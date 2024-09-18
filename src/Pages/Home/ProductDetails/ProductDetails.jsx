@@ -9,7 +9,10 @@ const [product,setProduct]=useState([])
   useEffect(() => {
     axios
       .get(`http://localhost:5000/api/products/${productId}`)
-      .then((res) => setProduct(res.data))
+      .then((res) => {
+        setProduct(res.data)
+        console.log(res.data)
+      })
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
