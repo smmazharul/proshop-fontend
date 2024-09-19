@@ -1,36 +1,23 @@
 // import React, { useEffect, useState } from 'react';
+import Loader from '../../../components/Loader';
+import Message from '../../../components/Message';
 import { useGetProductsQuery } from '../../../slices/productApiSlice';
 import Product from '../Product/Product';
-// import axios from 'axios'
+
 
 
 const Products = () => {
 
   const { data: products, isLoading, isError } = useGetProductsQuery();
-  console.log(products)
 
-//   const [products,setProducts]=useState([])
-
-//  useEffect(() => {
- 
-//    axios.get("http://localhost:5000/api/products")
-//      .then((res) => {
-    
-//        setProducts(res.data);
-//      })
-//      .catch((error) => {
-//        console.error("Error fetching data:", error);
-//      });
-  //  }, []);
-  
 
     if (isLoading) {
-      return <div>Loading...</div>;
+      return <Loader></Loader>;
     }
 
     // Handle error state
     if (isError) {
-      return <div>Error fetching products...</div>;
+      return <Message message={"Error fetching product..."}></Message>;
     }
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-10 px-4">
