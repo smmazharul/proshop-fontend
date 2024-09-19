@@ -1,10 +1,13 @@
 import React from 'react';
 import { FaUserCircle } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
-
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
+
+  const { cartItems } = useSelector((state) => state.cart);
+  console.log(cartItems)
     const navItems = (
       <>
         <li>
@@ -21,7 +24,12 @@ const Navbar = () => {
         </li>
         <li>
           <Link to="cart">
-            <FaShoppingCart />
+            <FaShoppingCart /> Cart
+            {cartItems.length > 0 && (
+              <div className="badge badge-secondary">
+                {cartItems.reduce((a, c) => a + c.qty, 0)}
+              </div>
+            )}
           </Link>
         </li>
       </>
