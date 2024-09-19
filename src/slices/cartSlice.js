@@ -17,13 +17,16 @@ const cartSlice = createSlice({
         (item) => item._id === newItem._id
       );
       if (existingItem) {
-          state.cartItems = state.cartItems.map((item) => item._id === existingItem._id ? newItem : item);
+        state.cartItems = state.cartItems.map((item) => item._id === existingItem._id ? newItem : item);
+        
+     
       } else {
-          state.cartItems = [...state.cartItems,newItem];
+        state.cartItems = [...state.cartItems,newItem];
+    
       }
-      
+
       return updateCart(state)
-         
+    
     },
   },
 });
