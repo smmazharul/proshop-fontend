@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { FaTrash } from "react-icons/fa";
 import Message from "../../../components/Message";
 import { Link, useNavigate } from "react-router-dom";
-import { addToCart } from "../../../slices/cartSlice";
+import { addToCart,removeFromCart } from "../../../slices/cartSlice";
 
 const Cart = () => {
   const navigate = useNavigate();
@@ -16,16 +16,23 @@ const Cart = () => {
     const handleQtyChange = async (product, qty) => {
         
        dispatch(addToCart({ ...product, qty })); // Assuming `updateCartQty` is the action to update cart quantity
-     };
+    };
+    
+    const removeFromCartHandler = async (id) => {
+        dispatch(removeFromCart(id));
+    }
+    const checkOutHandler = () => {
+      navigate('/login?redirect=/shipping')
+    };
   return (
-    <div>
-      <h1>carts</h1>
+    <div className="my-10">
+      <h1 className="text-2xl my-2">Carts Items</h1>
 
       <div className="flex justify-between">
         <div>
           {cartItems.length === 0 ? (
             <Link to="/">
-              <Message message={`Your cart is empty, Go Shopping `}></Message>
+              <Message message={`Your cart is empty,=> Go Shopping `} className="bg-green-400"></Message>
             </Link>
           ) : (
             cartItems.map((item, idx) => (
@@ -89,7 +96,10 @@ const Cart = () => {
                       )}
                     </td>
                     <th>
-                      <button className="btn btn-ghost btn-xs">
+                      <button
+                        className="btn btn-ghost btn-xs"
+                        onClick={() => removeFromCartHandler(item._id)}
+                      >
                         <FaTrash />
                       </button>
                     </th>
@@ -134,7 +144,8 @@ const Cart = () => {
                 <td>
                   <button
                     className="btn btn-neutral"
-                    disabled={cartItems.length === 0}
+                                      disabled={cartItems.length === 0}
+                                      onClick={checkOutHandler}
                   >
                     Proceed To Checkout
                   </button>
