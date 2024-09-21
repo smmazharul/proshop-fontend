@@ -7,6 +7,7 @@ import Home from "../Pages/Home/Home/Home";
 import ProductDetails from "../Pages/Home/ProductDetails/ProductDetails";
 import Products from "../Pages/Home/Products/Products";
 import Cart from "../Pages/Carts/Cart/Cart";
+import Login from "../Pages/LoginLogOut/Login/Login";
 
 export  const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ export  const router = createBrowserRouter([
       {
         path: 'cart',
         element:<Cart></Cart>
+      },
+      {
+        path: 'login',
+        element:<Login></Login>
       }
     ],
   },
