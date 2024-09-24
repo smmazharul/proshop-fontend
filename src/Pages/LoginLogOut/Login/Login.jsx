@@ -32,7 +32,7 @@ const Login = () => {
     const submitHandler = async (e) => {
         e.preventDefault();
         try{
-          const res=await login({email,password}).unwrap();
+          const res = await login({ email, password }).unwrap();
           dispatch(setCredentials({...res,userInfo}))
           navigate(redirect);
         }catch(err){
@@ -48,6 +48,7 @@ const Login = () => {
     
     <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
       <form className="card-body" onSubmit={submitHandler}>
+        <h1 className='text-3xl font-bold'>Login</h1>
         <div className="form-control">
           <label className="label">
             <span className="label-text">Email</span>
